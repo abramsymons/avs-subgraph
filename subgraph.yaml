@@ -1,0 +1,73 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BLSApkRegistry
+    network: holesky
+    source:
+      address: "0xC982E8Ebb4b24D0fED292626BCb073c792344Abe"
+      abi: BLSApkRegistry
+      startBlock: 2636329
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - NewPubkeyRegistration
+      abis:
+        - name: BLSApkRegistry
+          file: ./abis/BLSApkRegistry.json
+      eventHandlers:
+        - event: NewPubkeyRegistration(indexed address,(uint256,uint256),(uint256[2],uint256[2]))
+          handler: handleNewPubkeyRegistration
+      file: ./src/bls-apk-registry.ts
+  - kind: ethereum
+    name: RegistryCoordinator
+    network: holesky
+    source:
+      address: "0xDcE0b78AFc4Cc3bc2614853DF33e2639bdA839c3"
+      abi: RegistryCoordinator
+      startBlock: 2636329
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OperatorDeregistered
+        - OperatorRegistered
+      abis:
+        - name: RegistryCoordinator
+          file: ./abis/RegistryCoordinator.json
+      eventHandlers:
+        - event: OperatorDeregistered(indexed address,indexed bytes32)
+          handler: handleOperatorDeregistered
+        - event: OperatorRegistered(indexed address,indexed bytes32)
+          handler: handleOperatorRegistered
+        - event: OperatorSetParamsUpdated(indexed uint8,(uint32,uint16,uint16))
+          handler: handleOperatorSetParamsUpdated
+        - event: OperatorSocketUpdate(indexed bytes32,string)
+          handler: handleOperatorSocketUpdate
+      file: ./src/registry-coordinator.ts
+  - kind: ethereum
+    name: StakeRegistry
+    network: holesky
+    source:
+      address: "0xB2e933069E54f59D1459d09F6F8A2f800E9A7B8E"
+      abi: StakeRegistry
+      startBlock: 2636329
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OperatorStakeUpdate
+      abis:
+        - name: StakeRegistry
+          file: ./abis/StakeRegistry.json
+      eventHandlers:
+        - event: OperatorStakeUpdate(indexed bytes32,uint8,uint96)
+          handler: handleOperatorStakeUpdate
+      file: ./src/stake-registry.ts
