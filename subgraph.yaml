@@ -1,6 +1,6 @@
 specVersion: 1.0.0
 indexerHints:
-  prune: auto
+  prune: never
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: BLSApkRegistry
     network: holesky
     source:
-      address: "0xC982E8Ebb4b24D0fED292626BCb073c792344Abe"
+      address: "0xDA22De0B06971615E22536a702BC4C9313fae9F4"
       abi: BLSApkRegistry
-      startBlock: 2636329
+      startBlock: 1722790
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -28,9 +28,9 @@ dataSources:
     name: RegistryCoordinator
     network: holesky
     source:
-      address: "0xDcE0b78AFc4Cc3bc2614853DF33e2639bdA839c3"
+      address: "0xa19A698e512240Fe51b8FBf8c3BD86EEC3306379"
       abi: RegistryCoordinator
-      startBlock: 2636329
+      startBlock: 1722790
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -55,9 +55,9 @@ dataSources:
     name: StakeRegistry
     network: holesky
     source:
-      address: "0xB2e933069E54f59D1459d09F6F8A2f800E9A7B8E"
+      address: "0x1033b4976D3FcAFA074749bDE34Cd2c06d26Cc87"
       abi: StakeRegistry
-      startBlock: 2636329
+      startBlock: 1722790
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
