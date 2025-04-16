@@ -114,4 +114,12 @@ export function handleOperatorSocketUpdate(
   let map = new OperatorSocketMap(event.params.operatorId.toHexString());
   map.socket = event.params.socket;
   map.save();
+
+  let op = Operator.load(event.params.operatorId.toHexString())!;
+  op.blockNumber = event.block.number;
+  op.blockTimestamp = event.block.timestamp;
+  op.transactionHash = event.transaction.hash;
+  op.logIndex = event.logIndex;
+  op.socket = event.params.socket;
+  op.save();
 }
