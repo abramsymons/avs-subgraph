@@ -115,11 +115,14 @@ export function handleOperatorSocketUpdate(
   map.socket = event.params.socket;
   map.save();
 
-  let op = Operator.load(event.params.operatorId.toHexString())!;
-  op.blockNumber = event.block.number;
-  op.blockTimestamp = event.block.timestamp;
-  op.transactionHash = event.transaction.hash;
-  op.logIndex = event.logIndex;
-  op.socket = event.params.socket;
-  op.save();
+  let op = OperatorMap.load(event.params.operatorId.toHexString());
+  if(op !== null) {
+    let opData = Operator.load(op.address.toHexString())!;
+    opData.blockNumber = event.block.number;
+    opData.blockTimestamp = event.block.timestamp;
+    opData.transactionHash = event.transaction.hash;
+    opData.logIndex = event.logIndex;
+    opData.socket = event.params.socket;
+    opData.save();
+  }
 }
