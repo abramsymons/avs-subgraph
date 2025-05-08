@@ -58,7 +58,7 @@ type OperatorStakeUpdate @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Operator @entity {
+type Operator @entity(immutable: false) {
   id: String!
   operatorId: Bytes
   socket: String
@@ -76,12 +76,12 @@ type Operator @entity {
   createBlockTimestamp: BigInt
 }
 
-type OperatorMap @entity {
+type OperatorMap @entity(immutable: false) {
   id: String!
   address: Bytes!
 }
 
-type OperatorSocketMap @entity {
+type OperatorSocketMap @entity(immutable: false) {
   id: String!
   socket: String!
 }
